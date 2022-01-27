@@ -1,0 +1,16 @@
+pour les templates :
+
+    - première ligne donne les côtés où il y a des sorties (u pour up, d pour down, r pour right, l pour left)
+    - chacune des autres lignes correspond à une ligne de cases d'éléments
+    - la template totale est une "room"
+
+
+    - les codes pour les lignes (sauf première):
+        0 : rien (sol normal)
+        v : void (pas de passage)
+        d : door (to another room)
+        c : chest (certain)
+        q : chest (probable)
+        x : spike trap
+        e : ennemy (certain)
+        i : ennemy (probable)
