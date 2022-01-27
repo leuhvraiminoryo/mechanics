@@ -31,27 +31,6 @@ def showText(font,text,color,bgcolor,x,y):
     textSurf,textRect = makeText(font,text,color,bgcolor,x,y)
     SCR.blit(textSurf,textRect)
 
-
-def showOpeningCutscene():
-    start = time.time()
-    playSound(intro_sound)
-    passed = 0
-    alph = 0
-
-    while passed < 6:
-        passed = time.time() - start
-        SCR.fill(BLACK)
-
-        showText(BASICFONT,"Made By Minoryo",WHITE,BLACK,WX/2,WY/2-90)
-        if passed >= 2.5:
-            alph += passed
-            logo.set_alpha(alph)
-            SCR.blit(logo,(WX/2-64,WY/2-64))
-        
-        pygame.display.update()
-        FPSCLOCK.tick(FPS)
-
-
 def playSound(music):
     if not MUTE:
         pygame.mixer.Sound.play(music)
