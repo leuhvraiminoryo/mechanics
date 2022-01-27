@@ -1,6 +1,3 @@
-from msilib.schema import Binary
-
-
 class BinaryTree:
     def __init__(self,root,left = None,right = None):
         self.cont = root
