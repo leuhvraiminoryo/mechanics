@@ -14,3 +14,4 @@ pour les templates :
         x : spike trap
         e : ennemy (certain)
         i : ennemy (probable)
+        s : spawn point
