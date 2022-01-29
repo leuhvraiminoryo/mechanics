@@ -3,3 +3,4 @@ class Salle:
         self.id = id
         self.map = map
         self.link = linked
+        
