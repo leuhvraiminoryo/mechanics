@@ -5,7 +5,7 @@ correspondings_sides = {"u":"d","d":"u","r":"l","l":"r"}
 def extractRooms():
     rooms = []
 
-    directory = 'res\\templates'
+    directory = 'tests_rl/res/templates'
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
         if os.path.isfile(f):
