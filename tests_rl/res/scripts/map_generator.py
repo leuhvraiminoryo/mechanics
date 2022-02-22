@@ -3,7 +3,11 @@ import os, random
 
 correspondings_sides = {"u":"d","d":"u","r":"l","l":"r"}
 
-def extractRooms():
+def extractTemplates():
+    '''extrait toutes les templates présentes dans res.templates, et renvoie 
+    un dictionaire de listes de listes contenant ces templates, et représentant 
+    l'arborescence de racine res.templates'''
+    
     rooms = {}
 
     directory = 'tests_rl/res/templates'
@@ -33,7 +37,7 @@ def extractRooms():
 
     return rooms
 
-rooms = extractRooms()
+rooms = extractTemplates()
 
 def createDoors(salle):
     '''Crée toutes les portes d'une salle, et les ajoutes à doors de la salle'''
@@ -43,6 +47,9 @@ def createDoors(salle):
                 salle.doors.append(Door((i,j)))
 
 def generate_map():
+    '''génère une map composée du plusieurs salles et de leurs portes associées.
+    utilise pour cela les classes Map, Salle, et Door de zones.py'''
+
     map = Map()
     map.rooms.append(Salle(random.choice(rooms['depart'])))
     print(map.rooms[0].map[0])
