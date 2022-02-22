@@ -35,7 +35,16 @@ def extractRooms():
 
 rooms = extractRooms()
 
+def createDoors(salle):
+    '''Crée toutes les portes d'une salle, et les ajoutes à doors de la salle'''
+    for i in range(1,len(salle.map)):
+        for j in range(len(salle.map[1])):
+            if salle.map[i][j] == 'd':
+                salle.doors.append(Door((i,j)))
+
 def generate_map():
     map = Map()
     map.rooms.append(Salle(random.choice(rooms['depart'])))
     print(map.rooms[0].map[0])
+    createDoors(map.rooms[0])
+    print(map.rooms[0].doors)
