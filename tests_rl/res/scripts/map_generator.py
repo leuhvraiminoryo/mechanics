@@ -1,4 +1,5 @@
-import os
+from res.scripts.zones import *
+import os, random
 
 correspondings_sides = {"u":"d","d":"u","r":"l","l":"r"}
 
@@ -33,4 +34,8 @@ def extractRooms():
     return rooms
 
 rooms = extractRooms()
-print(rooms)
+
+def generate_map():
+    map = Map()
+    map.rooms.append(Salle(random.choice(rooms['depart'])))
+    print(map.rooms[0].map[0])

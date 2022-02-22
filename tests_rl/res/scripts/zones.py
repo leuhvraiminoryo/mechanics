@@ -1,7 +1,7 @@
 class Map:
     def __init__(self,rooms=[],doors=[]):
         self.rooms = rooms
-        self.doors = doors
+        self.doors = doors #list of all doors in Da Map
 
 class Salle:
     id = 0
