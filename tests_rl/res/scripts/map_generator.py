@@ -52,6 +52,6 @@ def generate_map():
 
     map = Map()
     map.rooms.append(Salle(random.choice(rooms['depart'])))
-    print(map.rooms[0].map[0])
+    print(map.rooms[0].map)
     createDoors(map.rooms[0])
     print(map.rooms[0].doors)
