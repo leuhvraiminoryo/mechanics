@@ -35,3 +35,27 @@ def playSound(music):
     if not MUTE:
         pygame.mixer.Sound.play(music)
     return
+
+
+class Player:
+    def __init__(self,pos=[WX/2,WY/2],color=WHITE,size=15):
+        self.pos = pos
+        self.color = color
+        self.size = size
+
+    def move(self,vec):
+
+        self.pos[0] += vec[0]
+        if self.pos[0] < 0:
+            self.pos[0] = 0
+        if self.pos[0] > WX:
+            self.pos[0] = WX
+
+        self.pos[1] += vec[1]
+        if self.pos[1] < 0:
+            self.pos[1] = 0
+        if self.pos[1] > WY:
+            self.pos[1] = WY
+
+    def draw(self):
+        pygame.draw.circle(SCR,self.color,self.pos,self.size)

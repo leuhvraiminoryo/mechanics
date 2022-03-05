@@ -33,10 +33,7 @@ LARGEFONT = pygame.font.Font('freesansbold.ttf', 75)
 BASICFONT = pygame.font.Font('freesansbold.ttf', 25)
 
 #sound setup
-pwop = pygame.mixer.Sound('res/sound/pwop.mp3')
-intro_sound = pygame.mixer.Sound("res/sound/intro_sound.wav")
 
 #image setup
 
-logo = pygame.image.load('res/images/logo.png')
 

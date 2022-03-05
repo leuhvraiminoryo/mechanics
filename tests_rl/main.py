@@ -1,6 +1,6 @@
-#import res.scripts.game as g
+import res.scripts.game as g
 import res.scripts.map_generator as mg
 
-mg.generate_map()
+#mg.generate_map()
 
-#g.play()
+g.play()
