@@ -10,9 +10,9 @@ global FPSCLOCK, SCR
 pygame.init()
 FPS = 60
 FPSCLOCK = pygame.time.Clock()
-WX = 800
-WY = 500
-TILESIZE = 15
+WX = 1000
+WY = 625
+TILESIZE = 30
 C_X = 20
 C_Y = 10
 SCR = pygame.display.set_mode((WX, WY))
