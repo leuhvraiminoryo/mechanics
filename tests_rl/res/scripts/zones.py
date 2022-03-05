@@ -5,15 +5,19 @@ class Map:
         self.rooms = rooms #list of all doors in Da Map
     
     def drawCurrRoom(self):
-        tile_color = {"0":WHITE,"d":BLUE}
+        tile_color = {"0":WHITE,"d":BLUE,"v":BLACK}
         curr_room = self.rooms[self.curr]
+
         l_x = len(curr_room.map[1])
         l_y = len(curr_room.map)
 
-        for y in range(0, l_x):
-            for x in range(1, l_y):
+        for x in range(0, l_x):
+            for y in range(1, l_y):
                 rect = pygame.Rect(x*TILESIZE + WX/2 - (l_x*TILESIZE)/2, y*TILESIZE + WY/2 - (l_y*TILESIZE)/2, TILESIZE, TILESIZE)
-                pygame.draw.rect(SCR, tile_color[curr_room.map[x][y]], rect, 1)
+                if not x > len(curr_room.map[y]):
+                    key = curr_room.map[y][x]
+                    if key in tile_color.keys():
+                        pygame.draw.rect(SCR, tile_color[key], rect, 1)
 
 
 class Salle:
@@ -25,7 +29,7 @@ class Salle:
         Salle.id += 1
 
     def link(self,id):
-        self.link.append(id)
+        self.doors.append(id)
 
 class Door:
     id = 0
