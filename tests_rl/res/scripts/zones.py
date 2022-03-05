@@ -2,7 +2,7 @@ from res.scripts.config import *
 class Map:
     def __init__(self,curr_room_id_in_rooms_list=0,rooms=[]):
         self.curr = curr_room_id_in_rooms_list
-        self.rooms = rooms #list of all doors in Da Map
+        self.rooms = rooms #list of all rooms in Da Map
     
     def drawCurrRoom(self):
         tile_color = {"0":WHITE,"d":BLUE,"v":BLACK}
