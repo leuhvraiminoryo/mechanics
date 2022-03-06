@@ -36,9 +36,20 @@ def playSound(music):
         pygame.mixer.Sound.play(music)
     return
 
+def ConvertEntityPosToTilePos(room_map,enti_coords):
+    l_x = len(room_map[1])
+    l_y = len(room_map)
 
+    x,y = enti_coords
+    return [round(((x) - WX/2 + (l_x*TILESIZE)/2)/TILESIZE),round(((y) - WY/2 + (l_y*TILESIZE)/2)/TILESIZE)]
+
+def OnWhichTileTypeIsEntity(room_map,enti_coords):
+    x,y = ConvertEntityPosToTilePos(room_map,enti_coords)
+    if 0 <= y < len(room_map):
+        if 0 <= x < len(room_map[y]):
+            return room_map[y][x]
 class Player:
-    def __init__(self,pos=[WX/2,WY/2],color=WHITE,size=15):
+    def __init__(self,pos=[WX/2,WY/2],color=WHITE,size=7):
         self.pos = pos
         self.color = color
         self.size = size

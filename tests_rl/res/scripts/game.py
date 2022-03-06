@@ -8,6 +8,7 @@ def play():
         SCR.fill(BLACK)
         checkForQuit()
         map.drawCurrRoom()
+        print(OnWhichTileTypeIsEntity(map.rooms[map.curr].map,player.pos))
         player.draw()
         player.move((random.randint(-5,5),random.randint(-5,5)))
         pygame.display.update()
