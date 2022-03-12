@@ -43,6 +43,13 @@ def ConvertEntityPosToTilePos(room_map,enti_coords):
     x,y = enti_coords
     return [int(((x) - WX/2 + (l_x*(TILESIZE+GAP))/2)/(TILESIZE+GAP)),int(((y) - WY/2 + (l_y*(TILESIZE+GAP))/2)/(TILESIZE+GAP))]
 
+def ConvertTilePosToEntityPos(room_map,tile_pos):
+    l_x = len(room_map[1])
+    l_y = len(room_map)
+
+    x,y = tile_pos
+    return [x*(TILESIZE+GAP) + WX/2 - (l_x*(TILESIZE+GAP))/2, y*(TILESIZE+GAP) + WY/2 - (l_y*(TILESIZE+GAP))/2]
+
 def OnWhichTileTypeIsEntity(room_map,enti_coords):
     x,y = ConvertEntityPosToTilePos(room_map,enti_coords)
     if 1 <= y < len(room_map):
