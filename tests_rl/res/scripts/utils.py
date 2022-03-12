@@ -48,6 +48,75 @@ def OnWhichTileTypeIsEntity(room_map,enti_coords):
     if 0 <= y < len(room_map):
         if 0 <= x < len(room_map[y]):
             return room_map[y][x]
+
+
+def verif_keys(pressed,left_click,right_click):
+    for event in pygame.event.get():
+        if event.type == MOUSEBUTTONDOWN:
+            if event.button == 1:
+                left_click = True
+            if event.button == 3:
+                right_click = True
+        if event.type == MOUSEBUTTONUP:
+            if event.button == 1:
+                left_click = False
+            if event.button == 3:
+                right_click = False
+        pygame.event.post(event)
+            
+
+
+    for event in pygame.event.get(KEYUP):
+        if event.key == K_UP:
+            pressed["up"] = False
+        if event.key == K_DOWN:
+            pressed["down"] = False
+        if event.key == K_RIGHT:
+            pressed["right"] = False
+        if event.key == K_LEFT:
+            pressed["left"] = False
+        if event.key == K_a:
+            pressed["a"] = False
+        if event.key == K_e:
+            pressed["e"] = False
+        if event.key == K_w:
+            pressed["w"] = False
+        if event.key == K_o:
+            pressed["o"] = False
+        if event.key == K_d:
+            pressed["d"] = False
+        if event.key == K_r:
+            pressed["r"] = False
+        if event.key == K_BACKSPACE:
+            pressed["del"] = False
+    
+    for event in pygame.event.get(KEYDOWN):
+        if event.key == K_UP:
+            pressed["up"] = True
+        if event.key == K_DOWN:
+            pressed["down"] = True
+        if event.key == K_RIGHT:
+            pressed["right"] = True
+        if event.key == K_LEFT:
+            pressed["left"] = True
+        if event.key == K_a:
+            pressed["a"] = True
+        if event.key == K_e:
+            pressed["e"] = True
+        if event.key == K_w:
+            pressed["w"] = True
+        if event.key == K_o:
+            pressed["o"] = True
+        if event.key == K_d:
+            pressed["d"] = True
+        if event.key == K_r:
+            pressed["r"] = True
+        if event.key == K_BACKSPACE:
+            pressed["del"] = True
+
+    return pressed, left_click, right_click
+
+
 class Player:
     def __init__(self,pos=[WX/2.5,WY/2.5],color=WHITE,size=7):
         self.lastpos = pos
