@@ -41,7 +41,7 @@ def ConvertEntityPosToTilePos(room_map,enti_coords):
     l_y = len(room_map)
 
     x,y = enti_coords
-    return [round(((x) - WX/2 + (l_x*TILESIZE)/2)/TILESIZE),round(((y) - WY/2 + (l_y*TILESIZE)/2)/TILESIZE)]
+    return [round(((x) - WX/2 + (l_x*(TILESIZE+GAP))/2)/(TILESIZE+GAP)),round(((y) - WY/2 + (l_y*(TILESIZE+GAP))/2)/(TILESIZE+GAP))]
 
 def OnWhichTileTypeIsEntity(room_map,enti_coords):
     x,y = ConvertEntityPosToTilePos(room_map,enti_coords)
@@ -49,12 +49,14 @@ def OnWhichTileTypeIsEntity(room_map,enti_coords):
         if 0 <= x < len(room_map[y]):
             return room_map[y][x]
 class Player:
-    def __init__(self,pos=[WX/2,WY/2],color=WHITE,size=7):
+    def __init__(self,pos=[WX/2.5,WY/2.5],color=WHITE,size=7):
+        self.lastpos = pos
         self.pos = pos
         self.color = color
         self.size = size
 
-    def move(self,vec):
+    def move(self,vec,roommap):
+        self.lastpos = list(self.pos)
 
         self.pos[0] += vec[0]
         if self.pos[0] < 0:
@@ -67,6 +69,9 @@ class Player:
             self.pos[1] = 0
         if self.pos[1] > WY:
             self.pos[1] = WY
+        
+        if OnWhichTileTypeIsEntity(roommap,self.pos) in [None,"v"]:
+            self.pos = list(self.lastpos)
 
     def draw(self):
         pygame.draw.circle(SCR,self.color,self.pos,self.size)

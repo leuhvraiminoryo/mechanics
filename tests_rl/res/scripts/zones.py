@@ -5,7 +5,7 @@ class Map:
         self.rooms = rooms #list of all rooms in Da Map
     
     def drawCurrRoom(self):
-        tile_color = {"0":WHITE,"d":BLUE,"v":BLACK}
+        tile_color = {"0":WHITE,"d":BLUE,"v":BLACK,"c":GOLDEN}
         curr_room = self.rooms[self.curr]
 
         l_x = len(curr_room.map[1])
@@ -13,7 +13,7 @@ class Map:
 
         for x in range(0, l_x):
             for y in range(1, l_y):
-                rect = pygame.Rect(x*TILESIZE + WX/2 - (l_x*TILESIZE)/2, y*TILESIZE + WY/2 - (l_y*TILESIZE)/2, TILESIZE, TILESIZE)
+                rect = pygame.Rect(x*(TILESIZE+GAP) + WX/2 - (l_x*(TILESIZE+GAP))/2, y*(TILESIZE+GAP) + WY/2 - (l_y*(TILESIZE+GAP))/2, TILESIZE, TILESIZE)
                 if not x > len(curr_room.map[y]):
                     key = curr_room.map[y][x]
                     if key in tile_color.keys():

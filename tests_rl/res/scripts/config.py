@@ -12,6 +12,7 @@ FPS = 60
 FPSCLOCK = pygame.time.Clock()
 WX = 1000
 WY = 625
+GAP = 1
 TILESIZE = 30
 C_X = 20
 C_Y = 10
@@ -27,6 +28,7 @@ GREY = (155,155,155)
 RED = (255,0,0)
 GREEN = (0,255,0)
 BLUE = (0,0,255)
+GOLDEN = (255,215,0)
 
 
 #fonts setup
