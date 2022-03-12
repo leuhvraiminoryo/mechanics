@@ -22,7 +22,7 @@ def play():
 
 
     player = Player()
-    map = Map(0,[Salle(['uld', '0000d0000', '00c000000', '000000000', '000vvv000', 'd00vvv00d', '000vvv000', '000000000', '000000000', '0000d0000'])])
+    map = Map(0,[Salle(['uld', 'vvvvvvvvvvv','v0000d0000v', 'v00c000000v', 'v000000000v', 'v000vvv000v', 'vd00vvv00dv', 'v000vvv000v', 'v000000000v', 'v000000000v', 'v0000d0000v','vvvvvvvvvvv']),Salle(['vvvvvvv','v00d00v','v00000v','v00000v','v00000v','v00000v','v00000v','v00d00v','vvvvvvv'])])
     while True:
         SCR.fill(BLACK)
         checkForQuit()

@@ -41,11 +41,11 @@ def ConvertEntityPosToTilePos(room_map,enti_coords):
     l_y = len(room_map)
 
     x,y = enti_coords
-    return [round(((x) - WX/2 + (l_x*(TILESIZE+GAP))/2)/(TILESIZE+GAP)),round(((y) - WY/2 + (l_y*(TILESIZE+GAP))/2)/(TILESIZE+GAP))]
+    return [int(((x) - WX/2 + (l_x*(TILESIZE+GAP))/2)/(TILESIZE+GAP)),int(((y) - WY/2 + (l_y*(TILESIZE+GAP))/2)/(TILESIZE+GAP))]
 
 def OnWhichTileTypeIsEntity(room_map,enti_coords):
     x,y = ConvertEntityPosToTilePos(room_map,enti_coords)
-    if 0 <= y < len(room_map):
+    if 1 <= y < len(room_map):
         if 0 <= x < len(room_map[y]):
             return room_map[y][x]
 
