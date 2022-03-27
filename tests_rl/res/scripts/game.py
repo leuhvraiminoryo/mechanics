@@ -1,11 +1,11 @@
 from res.scripts.utils import *
 from res.scripts.zones import *
 
-def doorUse(door,map):
-    for room in map.rooms:
-        for doors in room.doors:
-            if doors == door.link:
-                map.curr_id = map.rooms.index(room)
+def doorUse(door_id,map,player):
+    for doors in map.doors:
+        if doors.link == door_id:
+            map.curr = doors.room
+            player.pos = ConvertTilePosToEntityPos(map.rooms[map.curr].map,doors.pos)
 
 def play():
     left_click = False
@@ -32,11 +32,20 @@ def play():
     
     print(ConvertEntityPosToTilePos(map.rooms[map.curr].map,ConvertTilePosToEntityPos(map.rooms[map.curr].map,(6,6))))
     
+    map.doors.append(Door((2,5),0,Door.id+1))
+    map.doors.append(Door((7,3),1,Door.id-1))
+
     while True:
         SCR.fill(BLACK)
         checkForQuit()
         map.drawCurrRoom()
-        print(OnWhichTileTypeIsEntity(map.rooms[map.curr].map,player.pos))
+        tile = OnWhichTileTypeIsEntity(map.rooms[map.curr].map,player.pos)
+        if tile == 'd':
+            print('d')
+            for doors in map.doors:
+                if doors.room == map.curr and player.pos == ConvertTilePosToEntityPos(map.rooms[map.curr].map,doors.pos):
+                    print('use')
+                    doorUse(doors.id,map,player)
         player.draw()
         pressed,left_click,right_click = verif_keys(pressed,left_click,right_click)
         vec = [0,0]

@@ -7,7 +7,7 @@ pour les templates :
 
     - les codes pour les lignes (sauf première):
         0 : rien (sol normal)
-        v : void (pas de passage)
+        v : void (pas de passage/entoure la map)
         d : door (to another room)
         c : chest (certain)
         q : chest (probable)

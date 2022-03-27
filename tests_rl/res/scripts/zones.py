@@ -1,8 +1,9 @@
 from res.scripts.config import *
 class Map:
-    def __init__(self,curr_room_id_in_rooms_list=0,rooms=[]):
+    def __init__(self,curr_room_id_in_rooms_list=0,rooms=[],doors=[]):
         self.curr = curr_room_id_in_rooms_list
         self.rooms = rooms #list of all rooms in Da Map
+        self.doors = doors #list of all doors in Da Map
     
     def drawCurrRoom(self):
         tile_color = {"0":WHITE,"d":BLUE,"v":BLACK,"c":GOLDEN}
@@ -22,20 +23,17 @@ class Map:
 
 class Salle:
     id = 0
-    def __init__(self, map, doors=[]):
+    def __init__(self, map):
         self.id = Salle.id 
         self.map = map
-        self.doors = doors #list of all ids of doors in Da Room
         Salle.id += 1
-
-    def link(self,id):
-        self.doors.append(id)
 
 class Door:
     id = 0
-    def __init__(self, pos, porte_linked=None):
+    def __init__(self, pos, room=None, porte_linked=None):
         self.id = Door.id
         self.pos = pos
+        self.room = room #Da id of da room in which da door is
         self.link = porte_linked #Da Related Door's id
         Door.id += 1
     
