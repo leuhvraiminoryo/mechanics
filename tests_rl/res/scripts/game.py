@@ -6,6 +6,7 @@ def doorUse(door_id,map,player):
     for doors in map.doors:
         if doors.link == door_id:
             map.curr[0] = doors.room
+            print(doors.room)
             player.pos = ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,doors.pos)
 
 def play():
@@ -33,18 +34,19 @@ def play():
     
     print(ConvertEntityPosToTilePos(map.rooms[map.curr[0]].map,ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,(6,6))))
     
-    map.doors.append(Door((2,5),0,0))
-    map.doors.append(Door((7,3),1,1))
+    map.doors.append(Door((2,5),0,1))
+    map.doors.append(Door((3,7),1,0))
 
     while True:
         SCR.fill(BLACK)
         checkForQuit()
         map.drawCurrRoom()
         tile = OnWhichTileTypeIsEntity(map.rooms[map.curr[0]].map,player.pos)
+        print(time.time()-map.door_use_cooldown)
         if tile == 'd':
             x,y = ConvertEntityPosToTilePos(map.rooms[map.curr[0]].map,player.pos)
             for doors in map.doors:
-                if doors.room == map.curr[0] and [y,x] == list(doors.pos) and time.time() - map.door_use_cooldown > 10:
+                if doors.room == map.curr[0] and [y,x] == list(doors.pos) and time.time() - map.door_use_cooldown > 5:
                     print('use')
                     doorUse(doors.id,map,player)
         player.draw()
