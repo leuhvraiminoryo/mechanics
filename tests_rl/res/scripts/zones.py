@@ -1,13 +1,14 @@
 from res.scripts.config import *
 class Map:
     def __init__(self,curr_room_id_in_rooms_list=0,rooms=[],doors=[]):
-        self.curr = curr_room_id_in_rooms_list
+        self.curr = [curr_room_id_in_rooms_list]
         self.rooms = rooms #list of all rooms in Da Map
         self.doors = doors #list of all doors in Da Map
+        self.door_use_cooldown = time.time()
     
     def drawCurrRoom(self):
         tile_color = {"0":WHITE,"d":BLUE,"v":BLACK,"c":GOLDEN}
-        curr_room = self.rooms[self.curr]
+        curr_room = self.rooms[self.curr[0]]
 
         l_x = len(curr_room.map[1])
         l_y = len(curr_room.map)
