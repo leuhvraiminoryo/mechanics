@@ -10,9 +10,9 @@ def doorUse(door_id,map,player):
             player.pos = ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,[doors.pos[1],doors.pos[0]])
 
 def play():
+    
     left_click = False
     right_click = False
-
 
     pressed = {
         "up" : False,
@@ -42,14 +42,10 @@ def play():
         checkForQuit()
         map.drawCurrRoom()
         tile = OnWhichTileTypeIsEntity(map.rooms[map.curr[0]].map,player.pos)
-        #print(time.time()-map.door_use_cooldown)
         if tile == 'd':
-            print('d')
             x,y = ConvertEntityPosToTilePos(map.rooms[map.curr[0]].map,player.pos)
             for doors in map.doors:
-                print([y,x] , list(doors.pos))
                 if doors.room == map.curr[0] and [y,x] == list(doors.pos) and time.time() - map.door_use_cooldown > 5:
-                    print('use')
                     doorUse(doors.id,map,player)
         player.draw()
         pressed,left_click,right_click = verif_keys(pressed,left_click,right_click)
