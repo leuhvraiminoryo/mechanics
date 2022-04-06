@@ -10,7 +10,7 @@ def doorUse(door_id,map,player):
             player.pos = ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,[doors.pos[1],doors.pos[0]])
 
 def play():
-    
+
     left_click = False
     right_click = False
 
@@ -30,7 +30,7 @@ def play():
 
 
     player = Player()
-    map = Map(0,[Salle(['uld', 'vvvvvvvvvvv','v0000d0000v', 'v00c000000v', 'v000000000v', 'v000vvv000v', 'vd00vvv00dv', 'v000vvv000v', 'v000000000v', 'v000000000v', 'v0000d0000v','vvvvvvvvvvv']),Salle(['vvvvvvv','v00d00v','v00000v','v00000v','v00000v','v00000v','v00000v','v00d00v','vvvvvvv'])])
+    map = Map(0,[Salle(['uld', 'vvvvvvvvvvv','v0000d0000v', 'v00c000000v', 'v000000000v', 'v000vvv000v', 'vd00vvv00dv', 'v000vvv000v', 'v000000000v', 'v000000000v', 'v0000d0000v','vvvvvvvvvvv']),Salle(['vvvvvvv','v00d00v','v00000v','v00000v','v00000v','v00000v','v00000v','v00d00v','vvvvvvv']),Salle(['lrd', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', 'd0000000000000000000000d', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '00000000000d000000000000'])])
     
     print(ConvertEntityPosToTilePos(map.rooms[map.curr[0]].map,ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,(6,6))))
     

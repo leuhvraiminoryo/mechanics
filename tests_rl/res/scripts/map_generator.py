@@ -38,6 +38,7 @@ def extractTemplates():
     return rooms
 
 rooms = extractTemplates()
+print(rooms['depart'][0])
 
 def createDoors(salle):
     '''Crée toutes les portes d'une salle, et les ajoutes à doors de la salle'''
