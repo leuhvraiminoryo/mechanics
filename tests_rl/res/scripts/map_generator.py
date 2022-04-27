@@ -40,12 +40,22 @@ def extractTemplates():
 rooms = extractTemplates()
 print(rooms['depart'][0])
 
-def createDoors(salle):
+def createOtherDoors(salle):
+    coordOfExistingDoors = []
+    for door in salle.doors:
+        coordOfExistingDoors.append(door.pos)
     '''Crée toutes les portes d'une salle, et les ajoutes à doors de la salle'''
     for i in range(1,len(salle.map)):
         for j in range(len(salle.map[1])):
-            if salle.map[i][j] == 'd':
+            if salle.map[i][j] == 'd' and not (i,j) in coordOfExistingDoors:
                 salle.doors.append(Door((i,j)))
+
+def link_rooms(map,room):
+    createOtherDoors(room)
+    for door in room.doors:
+        if door.pos[0] == 1:
+            map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
+            createOtherDoors(map.rooms[-1])
 
 def generate_map():
     '''génère une map composée du plusieurs salles et de leurs portes associées.
@@ -53,6 +63,5 @@ def generate_map():
 
     map = Map()
     map.rooms.append(Salle(random.choice(rooms['depart'])))
-    print(map.rooms[0].map)
-    createDoors(map.rooms[0])
-    print(map.rooms[0].doors)
+    link_rooms(map,map.rooms[0])
+
