@@ -44,7 +44,7 @@ def extractTemplates():
 rooms = extractTemplates()
 print(rooms['depart'][0])
 
-def createOtherDoors(salle,door_to_link=None,pos_to_link=None):
+def createOtherDoors(salle):
     coordOfExistingDoors = []
     for door in salle.doors:
         coordOfExistingDoors.append(door.pos)
@@ -54,25 +54,35 @@ def createOtherDoors(salle,door_to_link=None,pos_to_link=None):
             if salle.map[i][j] == 'd' and not (i,j) in coordOfExistingDoors:
                 salle.doors.append(Door((i,j)))
 
+def addLinkDoor(salle,outer_door,cor):
+     for i in range(1,len(salle.map)):
+        for j in range(len(salle.map[1])):
+            if salle.map[i][j] == 'd' 
+
 def link_rooms(map,room):
+
     createOtherDoors(room)
+
     for door in room.doors:
 
         if door.pos[0] == 1:
-            dir = 'u'
+            cor = 'd'
         if door.pos[0] == len(room.map[1]):
-            dir = 'd'
+            cor = 'u'
         if door.pos[0] == 0:
-            dir = 'l'
+            cor = 'r'
         if door.pos[0] == len(room.map):
-            dir = 'r'
+            cor = 'l'
 
         map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
+
         while dir not in map.rooms[-1][0]:
             map.rooms.pop()
             map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
         
-        createOtherDoors(map.rooms[-1],door,dir)
+        addLinkDoor(map.rooms[-1],door,cor)
+
+        link_rooms(map,map.rooms[-1])
 
 def generate_map():
     '''génère une map composée du plusieurs salles et de leurs portes associées.
