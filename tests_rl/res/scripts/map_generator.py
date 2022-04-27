@@ -57,7 +57,10 @@ def createOtherDoors(salle):
 def addLinkDoor(salle,outer_door,cor):
      for i in range(1,len(salle.map)):
         for j in range(len(salle.map[1])):
-            if salle.map[i][j] == 'd' 
+            if salle.map[i][j] == 'd':
+                if i == len(salle.map) and cor == 'd':
+                    salle.doors.append(Door((i,j),porte_linked=[outer_door.id]))
+                    outer_door.porte_linked.append(salle.doors[-1].id)
 
 def link_rooms(map,room):
 
