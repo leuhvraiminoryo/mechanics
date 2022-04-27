@@ -37,10 +37,14 @@ def extractTemplates():
 
     return rooms
 
+
+
+# here starts an ultimate spaghetty nightmare - good luck to whomever may be reading this
+
 rooms = extractTemplates()
 print(rooms['depart'][0])
 
-def createOtherDoors(salle):
+def createOtherDoors(salle,door_to_link=None,pos_to_link=None):
     coordOfExistingDoors = []
     for door in salle.doors:
         coordOfExistingDoors.append(door.pos)
@@ -53,9 +57,22 @@ def createOtherDoors(salle):
 def link_rooms(map,room):
     createOtherDoors(room)
     for door in room.doors:
+
         if door.pos[0] == 1:
+            dir = 'u'
+        if door.pos[0] == len(room.map[1]):
+            dir = 'd'
+        if door.pos[0] == 0:
+            dir = 'l'
+        if door.pos[0] == len(room.map):
+            dir = 'r'
+
+        map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
+        while dir not in map.rooms[-1][0]:
+            map.rooms.pop()
             map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
-            createOtherDoors(map.rooms[-1])
+        
+        createOtherDoors(map.rooms[-1],door,dir)
 
 def generate_map():
     '''génère une map composée du plusieurs salles et de leurs portes associées.
