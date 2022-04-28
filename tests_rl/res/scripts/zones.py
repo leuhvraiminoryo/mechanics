@@ -24,9 +24,10 @@ class Map:
 
 class Salle:
     id = 0
-    def __init__(self, map):
+    def __init__(self, map, doors = []):
         self.id = Salle.id 
         self.map = map
+        self.doors = doors
         Salle.id += 1
 
 class Door:

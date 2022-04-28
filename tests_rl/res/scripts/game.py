@@ -1,5 +1,6 @@
 from res.scripts.utils import *
 from res.scripts.zones import *
+from res.scripts.map_generator import *
 
 def doorUse(door_id,map,player):
     map.door_use_cooldown = time.time()
@@ -36,6 +37,8 @@ def play():
     
     map.doors.append(Door((2,5),0,1))
     map.doors.append(Door((7,3),1,0))
+
+    map = generate_map()
 
     while True:
         SCR.fill(BLACK)

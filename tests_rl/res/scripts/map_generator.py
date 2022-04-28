@@ -64,6 +64,9 @@ def addLinkDoor(salle,outer_door,cor):
 
 def link_rooms(map,room):
 
+    if len(map.rooms) > 7:
+        return
+
     createOtherDoors(room)
 
     for door in room.doors:
@@ -79,7 +82,7 @@ def link_rooms(map,room):
 
         map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
 
-        while dir not in map.rooms[-1][0]:
+        while dir not in map.rooms[-1].map[0]:
             map.rooms.pop()
             map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
         
@@ -94,4 +97,5 @@ def generate_map():
     map = Map()
     map.rooms.append(Salle(random.choice(rooms['depart'])))
     link_rooms(map,map.rooms[0])
+    return map
 
