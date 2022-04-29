@@ -71,18 +71,18 @@ def link_rooms(map,room):
 
     for door in room.doors:
 
-        if door.pos[0] == 1:
+        if door.pos[0] <= 1:
             cor = 'd'
-        if door.pos[0] == len(room.map[1]):
+        if door.pos[0] >= len(room.map[1]):
             cor = 'u'
-        if door.pos[0] == 0:
+        if door.pos[0] < len(room.map):
             cor = 'r'
-        if door.pos[0] == len(room.map):
+        if door.pos[0] >= len(room.map)/2:
             cor = 'l'
 
         map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
 
-        while dir not in map.rooms[-1].map[0]:
+        while cor not in map.rooms[-1].map[0]:
             map.rooms.pop()
             map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
         
