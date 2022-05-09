@@ -39,6 +39,12 @@ def play():
     map.doors.append(Door((7,3),1,0))
 
     map = generate_map()
+    for door in map.doors:
+        print(door.id,door.link)
+    for room in map.rooms:
+        print(room.id)
+        for door in room.doors:
+            print(door.id,)
 
     while True:
         SCR.fill(BLACK)
