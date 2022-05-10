@@ -44,7 +44,7 @@ def extractTemplates():
 rooms = extractTemplates()
 print(rooms['depart'][0])
 
-def createOtherDoors(salle):
+def createOtherDoors(map,salle):
     coordOfExistingDoors = []
     for door in salle.doors:
         coordOfExistingDoors.append(door.pos)
@@ -52,7 +52,7 @@ def createOtherDoors(salle):
     for i in range(1,len(salle.map)):
         for j in range(len(salle.map[1])):
             if salle.map[i][j] == 'd' and not (i,j) in coordOfExistingDoors:
-                salle.doors.append(Door((i,j)))
+                map.doors.append(Door((i,j)))
 
 def addLinkDoor(map,salle,outer_door,cor):
      for i in range(1,len(salle.map)):
@@ -67,7 +67,7 @@ def link_rooms(map,room):
     if len(map.rooms) > 7:
         return
 
-    createOtherDoors(room)
+    createOtherDoors(map,room)
 
     for door in room.doors:
 
