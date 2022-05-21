@@ -2,8 +2,8 @@ from res.scripts.config import *
 class Map:
     def __init__(self,curr_room_id_in_rooms_list=0,rooms=[],doors=[]):
         self.curr = [curr_room_id_in_rooms_list]
-        self.rooms = rooms #list of all rooms in Da Map
-        self.doors = doors #list of all doors in Da Map
+        self.rooms = rooms #list of all rooms in The Map
+        self.doors = doors #list of all doors in The Map
         self.door_use_cooldown = time.time()
     
     def drawCurrRoom(self):
