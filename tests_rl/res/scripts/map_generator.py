@@ -48,7 +48,7 @@ def createOtherDoors(map,salle):
     coordOfExistingDoors = []
     for door in salle.doors:
         coordOfExistingDoors.append(door.pos_in_room)
-    '''Crée toutes les portes d'une salle, et les ajoutes à doors de la salle'''
+    '''Crée toutes les portes d'une salle, et les ajoute à doors de la salle'''
     for i in range(1,len(salle.map)):
         for j in range(len(salle.map[1])):
             if salle.map[i][j] == 'd' and not (i,j) in coordOfExistingDoors:
