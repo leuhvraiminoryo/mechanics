@@ -42,25 +42,52 @@ def extractTemplates():
 # here starts an ultimate spaghetty nightmare - good luck to whomever may be reading this
 
 rooms = extractTemplates()
-print(rooms['depart'][0])
+print(rooms['start'][0])
 
 def createOtherDoors(map,salle):
     coordOfExistingDoors = []
     for door in salle.doors:
-        coordOfExistingDoors.append(door.pos)
+        coordOfExistingDoors.append(door.pos_in_room)
     '''Crée toutes les portes d'une salle, et les ajoutes à doors de la salle'''
     for i in range(1,len(salle.map)):
         for j in range(len(salle.map[1])):
             if salle.map[i][j] == 'd' and not (i,j) in coordOfExistingDoors:
-                map.doors.append(Door((i,j)))
+                newdoor = Door((i,j))
+                map.doors.append(newdoor)
+                salle.doors.append(newdoor)
 
 def addLinkDoor(map,salle,outer_door,cor):
      for i in range(1,len(salle.map)):
         for j in range(len(salle.map[1])):
             if salle.map[i][j] == 'd':
                 if i == len(salle.map) and cor == 'd':
-                    map.doors.append(Door((i,j),room=salle.id,porte_linked=[outer_door.id]))
-                    outer_door.porte_linked.append(salle.doors[-1].id)
+                    newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
+                    map.doors.append(newdoor)
+                    salle.doors.append(newdoor)
+                    print(map.doors[-1].id)
+                    outer_door.link = map.doors[-1].id
+                    return
+                if i == 1 and cor == 'u':
+                    newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
+                    map.doors.append(newdoor)
+                    salle.doors.append(newdoor)
+                    print(map.doors[-1].id)
+                    outer_door.link = map.doors[-1].id
+                    return
+                if j == 0 and cor == 'l':
+                    newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
+                    map.doors.append(newdoor)
+                    salle.doors.append(newdoor)
+                    print(map.doors[-1].id)
+                    outer_door.link = map.doors[-1].id
+                    return
+                if j == len(salle.map[1]) and cor == 'r':
+                    newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
+                    map.doors.append(newdoor)
+                    salle.doors.append(newdoor)
+                    print(map.doors[-1].id)
+                    outer_door.link = map.doors[-1].id
+                    return
 
 def link_rooms(map,room):
 
@@ -71,13 +98,13 @@ def link_rooms(map,room):
 
     for door in room.doors:
 
-        if door.pos[0] <= 1:
+        if door.pos_in_room[0] <= 1:
             cor = 'd'
-        if door.pos[0] >= len(room.map[1]):
+        if door.pos_in_room[0] >= len(room.map[1]):
             cor = 'u'
-        if door.pos[0] < len(room.map):
+        if door.pos_in_room[0] < len(room.map):
             cor = 'r'
-        if door.pos[0] >= len(room.map)/2:
+        if door.pos_in_room[0] >= len(room.map)/2:
             cor = 'l'
 
         map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
@@ -95,7 +122,7 @@ def generate_map():
     utilise pour cela les classes Map, Salle, et Door de zones.py'''
 
     map = Map()
-    map.rooms.append(Salle(random.choice(rooms['depart'])))
+    map.rooms.append(Salle(random.choice(rooms['start'])))
     link_rooms(map,map.rooms[0])
     return map
 
