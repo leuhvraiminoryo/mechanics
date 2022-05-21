@@ -24,18 +24,17 @@ class Map:
 
 class Salle:
     id = 0
-    def __init__(self, map, doors = []):
+    def __init__(self, map):
         self.id = Salle.id 
         self.map = map
-        self.doors = doors
         Salle.id += 1
 
 class Door:
     id = 0
     def __init__(self, pos, room=None, porte_linked=None):
         self.id = Door.id
-        self.pos = pos
         self.room = room #Da id of da room in which da door is
+        self.pos_in_room = pos
         self.link = porte_linked #Da Related Door's id
         Door.id += 1
     
