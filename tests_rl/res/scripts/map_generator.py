@@ -52,7 +52,7 @@ def createOtherDoors(map,salle):
     for i in range(1,len(salle.map)):
         for j in range(len(salle.map[1])):
             if salle.map[i][j] == 'd' and not (i,j) in coordOfExistingDoors:
-                newdoor = Door((i,j))
+                newdoor = Door((i,j),room=salle.id)
                 map.doors.append(newdoor)
                 salle.doors.append(newdoor)
 
@@ -64,35 +64,28 @@ def addLinkDoor(map,salle,outer_door,cor):
                     newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
                     map.doors.append(newdoor)
                     salle.doors.append(newdoor)
-                    print(map.doors[-1].id)
                     outer_door.link = map.doors[-1].id
                     return
                 if i == 1 and cor == 'u':
                     newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
                     map.doors.append(newdoor)
                     salle.doors.append(newdoor)
-                    print(map.doors[-1].id)
                     outer_door.link = map.doors[-1].id
                     return
                 if j == 0 and cor == 'l':
                     newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
                     map.doors.append(newdoor)
                     salle.doors.append(newdoor)
-                    print(map.doors[-1].id)
                     outer_door.link = map.doors[-1].id
                     return
                 if j == len(salle.map[1]) and cor == 'r':
                     newdoor = Door((i,j),room=salle.id,porte_linked=outer_door.id)
                     map.doors.append(newdoor)
                     salle.doors.append(newdoor)
-                    print(map.doors[-1].id)
                     outer_door.link = map.doors[-1].id
                     return
 
 def link_rooms(map,room):
-
-    if len(map.rooms) > 7:
-        return
 
     createOtherDoors(map,room)
 
@@ -114,6 +107,9 @@ def link_rooms(map,room):
             map.rooms.append(Salle(random.choice(rooms[random.choice(ROOMTYPES)])))
         
         addLinkDoor(map,map.rooms[-1],door,cor)
+
+        if len(map.rooms)>7:
+            return
 
         link_rooms(map,map.rooms[-1])
 

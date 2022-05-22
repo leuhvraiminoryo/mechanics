@@ -7,9 +7,10 @@ def doorUse(door_id,map,player):
     for doors in map.doors:
         if doors.link == door_id:
             map.curr[0] = doors.room
-            print(doors.room)
+            #print(doors.room)
             player.pos = ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,[doors.pos_in_room[1],doors.pos_in_room[0]])
-
+            return 
+            
 def play():
 
     left_click = False
@@ -31,12 +32,12 @@ def play():
 
 
     player = Player()
-    #map = Map(0,[Salle(['uld', 'vvvvvvvvvvv','v0000d0000v', 'v00c000000v', 'v000000000v', 'v000vvv000v', 'vd00vvv00dv', 'v000vvv000v', 'v000000000v', 'v000000000v', 'v0000d0000v','vvvvvvvvvvv']),Salle(['vvvvvvv','v00d00v','v00000v','v00000v','v00000v','v00000v','v00000v','v00d00v','vvvvvvv']),Salle(['lrd', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', 'd0000000000000000000000d', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '00000000000d000000000000'])])
+    '''map = Map(0,[Salle(['uld', 'vvvvvvvvvvv','v0000d0000v', 'v00c000000v', 'v000000000v', 'v000vvv000v', 'vd00vvv00dv', 'v000vvv000v', 'v000000000v', 'v000000000v', 'v0000d0000v','vvvvvvvvvvv']),Salle(['vvvvvvv','v00d00v','v00000v','v00000v','v00000v','v00000v','v00000v','v00d00v','vvvvvvv']),Salle(['lrd', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', 'd0000000000000000000000d', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '000000000000000000000000', '00000000000d000000000000'])])
     
-    #print(ConvertEntityPosToTilePos(map.rooms[map.curr[0]].map,ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,(6,6))))
+    print(ConvertEntityPosToTilePos(map.rooms[map.curr[0]].map,ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,(6,6))))
     
-    #map.doors.append(Door((2,5),0,1))
-    #map.doors.append(Door((7,3),1,0))
+    map.doors.append(Door((2,5),0,1))
+    map.doors.append(Door((7,3),1,0))'''
 
     map = generate_map()
     for door in map.doors:
@@ -53,6 +54,7 @@ def play():
             x,y = ConvertEntityPosToTilePos(map.rooms[map.curr[0]].map,player.pos)
             for doors in map.doors:
                 if doors.room == map.curr[0] and [y,x] == list(doors.pos_in_room) and time.time() - map.door_use_cooldown > 5:
+                    print("dooruse")
                     doorUse(doors.id,map,player)
         player.draw()
         pressed,left_click,right_click = verif_keys(pressed,left_click,right_click)
