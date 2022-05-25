@@ -34,8 +34,8 @@ class Door:
     id = 0
     def __init__(self, pos, room=None, porte_linked=None):
         self.id = Door.id
-        self.pos = pos
         self.room = room #Da id of da room in which da door is
+        self.pos_in_room = pos
         self.link = porte_linked #Da Related Door's id
         Door.id += 1
     

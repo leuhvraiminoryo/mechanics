@@ -20,7 +20,7 @@ SCR = pygame.display.set_mode((WX, WY))
 SCR.fill((255,25,36))
 pygame.display.set_caption("yeet")
 MUTE = False
-ROOMTYPES = ["corridor","others"]
+ROOMTYPES = ["corridor","deadend","others"]
 
 #colors setup
 BLACK = (0,0,0)
