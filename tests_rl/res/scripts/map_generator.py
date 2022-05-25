@@ -88,6 +88,13 @@ def addLinkDoor(map,salle,outer_door,cor):
 def link_rooms(map,room):
 
     createOtherDoors(map,room)
+    
+    ended = True
+    for door in room.doors:
+        if door.link == None:
+            ended = False
+    if ended:
+        return
 
     for door in room.doors:
 
@@ -108,8 +115,9 @@ def link_rooms(map,room):
         
         addLinkDoor(map,map.rooms[-1],door,cor)
 
-        if len(map.rooms)>7:
-            return
+        '''if len(map.rooms)>7:
+            return'''
+        
 
         link_rooms(map,map.rooms[-1])
 

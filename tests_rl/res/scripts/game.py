@@ -8,7 +8,7 @@ def doorUse(door_id,map,player):
         if doors.link == door_id:
             map.curr[0] = doors.room
             #print(doors.room)
-            player.pos = ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,[doors.pos_in_room[0],doors.pos_in_room[1]])
+            player.pos = ConvertTilePosToEntityPos(map.rooms[map.curr[0]].map,[doors.pos_in_room[1],doors.pos_in_room[0]])
             return 
             
 def play():
