@@ -1,12 +1,12 @@
-from res.scripts.zones import *
+from tests_rl.res.scripts.zones import *
 import os, random
 
 correspondings_sides = {"u":"d","d":"u","r":"l","l":"r"}
 
 def extractTemplates():
-    '''extrait toutes les templates présentes dans res.templates, et renvoie 
+    '''extrait toutes les templates présentes dans tests_rl.res.templates, et renvoie 
     un dictionaire de listes de listes contenant ces templates, et représentant 
-    l'arborescence de racine res.templates'''
+    l'arborescence de racine tests_rl.res.templates'''
     
     rooms = {}
 
@@ -115,8 +115,8 @@ def link_rooms(map,room):
         
         addLinkDoor(map,map.rooms[-1],door,cor)
 
-        '''if len(map.rooms)>7:
-            return'''
+        if len(map.rooms)>7:
+            return
         
 
         link_rooms(map,map.rooms[-1])

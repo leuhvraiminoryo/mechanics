@@ -1,6 +1,6 @@
-from res.scripts.utils import *
-from res.scripts.zones import *
-from res.scripts.map_generator import *
+from tests_rl.res.scripts.utils import *
+from tests_rl.res.scripts.zones import *
+from tests_rl.res.scripts.map_generator import *
 
 def doorUse(door_id,map,player):
     map.door_use_cooldown = time.time()

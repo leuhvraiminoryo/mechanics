@@ -1,4 +1,4 @@
-from res.scripts.config import *
+from tests_rl.res.scripts.config import *
 
 #-------------------- utils defs
 def terminate(reason):

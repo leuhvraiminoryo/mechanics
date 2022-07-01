@@ -1,4 +1,4 @@
-from res.scripts.config import *
+from tests_rl.res.scripts.config import *
 class Map:
     def __init__(self,curr_room_id_in_rooms_list=0,rooms=[],doors=[]):
         self.curr = [curr_room_id_in_rooms_list]
